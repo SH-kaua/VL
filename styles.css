@@ -1,60 +1,177 @@
 styles.css
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Placar de Vôlei - Preto e Vermelho</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+/* Paleta de Cores: Preto (fundo e texto principal) e Vermelho (destaque) */
+:root {
+    --cor-fundo: #1a1a1a;
+    --cor-texto: #ffffff;
+    --cor-destaque: #e81d24; /* Vermelho vibrante */
+    --cor-secundaria: #333333;
+    --cor-remover: #5a5a5a; /* Cinza escuro para botão de remoção */
+}
 
-    <header>
-        <h1>Placar e Regras de Vôlei</h1>
-    </header>
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
 
-    <main>
-        <section id="placar">
-            <h2>🔴 Placar Atual 🔴</h2>
-            <div class="quadro-placar">
-                
-                <div class="time" id="time-a">
-                    <h3>TIME A</h3>
-                    <div class="pontuacao-display" id="pontos-a">0</div>
-                    <button class="botao-ponto" onclick="adicionarPonto('A')">+ Ponto</button>
-                    <div class="sets">Sets Ganhos: <span id="sets-a">0</span></div>
-                </div>
+header {
+    background-color: var(--cor-destaque);
+    color: var(--cor-texto);
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 5px solid var(--cor-texto);
+}
 
-                <div class="time" id="time-b">
-                    <h3>TIME B</h3>
-                    <div class="pontuacao-display" id="pontos-b">0</div>
-                    <button class="botao-ponto" onclick="adicionarPonto('B')">+ Ponto</button>
-                    <div class="sets">Sets Ganhos: <span id="sets-b">0</span></div>
-                </div>
+main {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
 
-            </div>
-            <button id="reset-button" onclick="resetarPlacar()">Reiniciar Jogo</button>
-        </section>
+h1, h2, h3 {
+    color: var(--cor-destaque);
+    text-align: center;
+}
 
-        <hr>
+/* --- Seção de Placar --- */
 
-        <section id="regras">
-            <h2>📜 Regras Básicas do Vôlei</h2>
-            <p><strong>Atenção:</strong> Estas são regras simplificadas. Consulte fontes oficiais para as regras completas.</p>
-            <ul>
-                <li>O jogo é disputado em melhor de 5 sets (geralmente).</li>
-                <li>Os sets (exceto o decisivo/tie-break) vão até **25 pontos**, com uma diferença mínima de **2 pontos**.</li>
-                <li>Se houver empate em 24-24, o jogo continua até que um time abra 2 pontos de vantagem (ex: 26-24, 27-25).</li>
-                <li>O quinto set (tie-break) geralmente vai até **15 pontos**, mantendo a regra dos 2 pontos de diferença.</li>
-                <li>A equipe que vence o rally marca um ponto (*rally point*) e ganha o direito de sacar.</li>
-            </ul>
-        </section>
-    </main>
+#placar {
+    background-color: var(--cor-secundaria);
+    padding: 25px;
+    border-radius: 15px; /* Mais arredondado */
+    box-shadow: 0 0 20px rgba(232, 29, 36, 0.5); 
+}
 
-    <footer>
-        <p>&copy; 2025 Placar de Vôlei</p>
-    </footer>
+.quadro-placar {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    margin-top: 25px;
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+.time {
+    flex: 1;
+    background-color: var(--cor-fundo);
+    padding: 30px 20px;
+    border-radius: 12px; /* Mais arredondado */
+    text-align: center;
+    border: 3px solid var(--cor-destaque);
+    transition: border-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+
+/* Destaque para o time que está ganhando */
+.time.lider {
+    border-color: var(--cor-texto); 
+    box-shadow: 0 0 30px var(--cor-destaque); /* Sombra forte */
+    background-color: #242424; /* Levemente mais claro */
+}
+
+.pontuacao-display {
+    font-size: 5.5em;
+    font-weight: bold;
+    color: var(--cor-destaque);
+    margin: 10px 0 20px;
+    padding: 10px;
+    border: 3px solid var(--cor-texto);
+    border-radius: 10px; /* Arredondado */
+    display: inline-block;
+    min-width: 110px;
+}
+
+.sets {
+    font-size: 1.6em;
+    margin-top: 20px;
+    color: var(--cor-texto);
+}
+
+/* Controles de Pontos */
+.controles-pontos {
+    display: flex;
+    justify-content: center;
+    gap: 15px; 
+    margin-bottom: 15px;
+}
+
+.botao-ponto {
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 8px; /* Mais arredondado */
+    transition: background-color 0.3s;
+}
+
+.botao-ponto:not(.remover) {
+    background-color: var(--cor-destaque);
+    color: var(--cor-texto);
+}
+
+.botao-ponto:not(.remover):hover {
+    background-color: #ff4d4d; 
+}
+
+.botao-ponto.remover {
+    background-color: var(--cor-remover);
+    color: var(--cor-texto);
+}
+
+.botao-ponto.remover:hover {
+    background-color: #808080;
+}
+
+#reset-button {
+    display: block;
+    width: 60%;
+    margin: 30px auto 0;
+    padding: 18px;
+    background-color: var(--cor-texto);
+    color: var(--cor-fundo);
+    font-size: 1.4em;
+    font-weight: bold;
+    border: 2px solid var(--cor-destaque);
+    border-radius: 8px; /* Mais arredondado */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#reset-button:hover {
+    background-color: var(--cor-destaque);
+    color: var(--cor-texto);
+}
+
+/* --- Seção de Regras --- */
+
+#regras {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: var(--cor-secundaria);
+    border-radius: 15px; /* Mais arredondado */
+}
+
+#regras p, #regras ul {
+    color: #cccccc;
+}
+
+#regras li {
+    margin-bottom: 10px;
+}
+
+hr {
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, var(--cor-fundo), var(--cor-destaque), var(--cor-fundo));
+    margin: 40px 0;
+}
+
+/* --- Footer --- */
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: var(--cor-secundaria);
+    color: #999999;
+    margin-top: 30px;
+}

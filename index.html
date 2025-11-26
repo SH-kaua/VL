@@ -4,13 +4,13 @@ index.html
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Placar de Vôlei - Preto e Vermelho</title>
+    <title>Placar de Vôlei - Preto e Vermelho Otimizado</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <h1>Placar e Regras de Vôlei</h1>
+        <h1>Placar e Regras de Vôlei 🏐</h1>
     </header>
 
     <main>
@@ -21,38 +21,43 @@ index.html
                 <div class="time" id="time-a">
                     <h3>TIME A</h3>
                     <div class="pontuacao-display" id="pontos-a">0</div>
-                    <button class="botao-ponto" onclick="adicionarPonto('A')">+ Ponto</button>
+                    <div class="controles-pontos">
+                        <button class="botao-ponto remover" onclick="removerPonto('A')">- Ponto</button> 
+                        <button class="botao-ponto" onclick="adicionarPonto('A')">+ Ponto</button>
+                    </div>
                     <div class="sets">Sets Ganhos: <span id="sets-a">0</span></div>
                 </div>
 
                 <div class="time" id="time-b">
                     <h3>TIME B</h3>
                     <div class="pontuacao-display" id="pontos-b">0</div>
-                    <button class="botao-ponto" onclick="adicionarPonto('B')">+ Ponto</button>
+                    <div class="controles-pontos">
+                        <button class="botao-ponto remover" onclick="removerPonto('B')">- Ponto</button>
+                        <button class="botao-ponto" onclick="adicionarPonto('B')">+ Ponto</button>
+                    </div>
                     <div class="sets">Sets Ganhos: <span id="sets-b">0</span></div>
                 </div>
 
             </div>
-            <button id="reset-button" onclick="resetarPlacar()">Reiniciar Jogo</button>
+            <button id="reset-button" onclick="resetarPlacar()">🔄 Reiniciar Jogo</button>
         </section>
 
         <hr>
 
         <section id="regras">
             <h2>📜 Regras Básicas do Vôlei</h2>
-            <p><strong>Atenção:</strong> Estas são regras simplificadas. Consulte fontes oficiais para as regras completas.</p>
+            <p><strong>Atenção:</strong> Estas são regras simplificadas.</p>
             <ul>
-                <li>O jogo é disputado em melhor de 5 sets (geralmente).</li>
-                <li>Os sets (exceto o decisivo/tie-break) vão até **25 pontos**, com uma diferença mínima de **2 pontos**.</li>
-                <li>Se houver empate em 24-24, o jogo continua até que um time abra 2 pontos de vantagem (ex: 26-24, 27-25).</li>
-                <li>O quinto set (tie-break) geralmente vai até **15 pontos**, mantendo a regra dos 2 pontos de diferença.</li>
-                <li>A equipe que vence o rally marca um ponto (*rally point*) e ganha o direito de sacar.</li>
+                <li>O jogo é melhor de 5 sets (o 5º set vai até 15 pontos).</li>
+                <li>Sets normais (1º ao 4º) vão até **25 pontos**.</li>
+                <li>É necessária uma diferença mínima de **2 pontos** para vencer qualquer set.</li>
+                <li>A equipe que vence o rally marca um ponto.</li>
             </ul>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Placar de Vôlei</p>
+        <p>&copy; 2025 Placar de Vôlei Otimizado</p>
     </footer>
 
     <script src="script.js"></script>
